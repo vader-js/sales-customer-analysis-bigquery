@@ -1,6 +1,6 @@
 # Sales, Customer and Product Analysis with SQL & BigQuery
 
-A SQL portfolio project by **Ayomide Shittu** that transforms sales transactions, customer attributes, and product attributes into reusable customer and product reporting views in Google BigQuery.
+A SQL portfolio project that transforms sales transactions, customer attributes, and product attributes into reusable customer and product reporting views in Google BigQuery.
 
 ## Project objective
 
