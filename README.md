@@ -46,7 +46,7 @@ The report joins `sales-customer` to `sales-fact` on `customer_key`, then groups
 2. Load your own compatible customer and sales tables. This repository contains SQL and documentation; source data files are not included, and the original dataset's provenance has not been documented here.
 3. Replace `sql-sales-data-500710.salespractice` in the SQL with your project and dataset IDs.
 4. Open `customer_report.sql` in the BigQuery SQL editor and run it using GoogleSQL.
-5. To create a reusable view, prepend `CREATE VIEW \`YOUR_PROJECT.YOUR_DATASET.customer_report\` AS` to the SELECT statement.
+5. To create a reusable view, prepend ``CREATE VIEW `YOUR_PROJECT.YOUR_DATASET.customer_report` AS`` to the SELECT statement.
 
 Required source columns are visible in the SQL. The query expects date-compatible `birthdate` and `order_date` values, numeric `sales_amount` and `quantity`, and compatible customer join keys.
 
