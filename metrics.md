@@ -36,3 +36,40 @@ The sales currency is not specified in the SQL, so the threshold is expressed in
 - Grouping includes customer attributes as well as customer ID. Inconsistent customer dimension records may produce more than one report row for a customer ID, and duplicated join keys may inflate totals.
 
 These are observations about the preserved query, not changes to the source BigQuery view. Before production use, validate join-key uniqueness, nulls, boundary cases, and the intended business definitions.
+
+# Product report metrics
+
+These definitions describe `product_report.sql`, supplied by the author and formatted without changing its business logic.
+
+| Field | Calculation or meaning |
+| --- | --- |
+| `product_name`, `category_id`, `category`, `subcategory` | Product attributes |
+| `total_sales` | Sum of sales amount for rows with a non-null order number |
+| `total_orders` | Count of distinct order numbers |
+| `last_order_date` | Most recent order date |
+| `recency` | Month boundaries between last order date and CURRENT_DATE |
+| `lifespan` | Month boundaries between first and last order dates |
+| `avg_monthly_revenue` | Zero for zero-month lifespan; otherwise total sales divided by lifespan, rounded to two decimals |
+| `avg_order_revenue` | Zero for zero orders; otherwise total sales divided by distinct order count, rounded to two decimals |
+| `avg_selling_price` | Total sales divided by total quantity, with safe division and a zero-denominator guard; not rounded in the supplied SQL |
+| `total_customers` | Count of distinct customer keys |
+
+## Product segmentation
+
+- **Low Performer:** total sales at or below 10,000.
+- **Mid Perfomer:** total sales above 10,000 and at or below 50,000. The supplied output label contains this spelling and is preserved.
+- **High Performer:** all remaining cases, normally total sales above 50,000.
+
+The currency is not specified, so thresholds use dataset units.
+
+## Product interpretation notes
+
+- `WHERE s.order_number IS NOT NULL` removes unmatched products after the LEFT JOIN. Unsold products and sales with null order numbers are excluded.
+- A NULL total sales value falls through to High Performer under the current CASE expression.
+- Products with zero-month lifespan receive zero monthly revenue, even when they have positive sales; this differs from the customer report's fallback.
+- `product_id`, `product_number`, `qty`, and `first_order` are computed or grouped in the CTE but are not returned by the final SELECT.
+- Distinct product IDs are used in grouping but omitted from the output; products sharing names may appear as separate rows without an exposed unique product identifier.
+- Calendar-boundary month calculations and dynamic CURRENT_DATE affect lifespan and recency interpretation.
+- Duplicate product join keys can inflate sums; source-key uniqueness should be validated.
+
+The script includes CREATE OR REPLACE VIEW. It was added to the repository without running it or replacing the live BigQuery view.
