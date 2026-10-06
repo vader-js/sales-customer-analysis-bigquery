@@ -38,7 +38,7 @@ The report joins `sales-customer` to `sales-fact` on `customer_key`, then groups
 
 ## How the customer query works
 
-1. **Aggregate customer activity:** `customer_base` joins the customer, product, and sales tables and calculates sales, quantity, distinct products, distinct orders, first and last order dates, lifespan, and age.
+1. **Aggregate customer activity:** `customer_base` joins the customer and sales tables and calculates sales, quantity, distinct products, distinct orders, first and last order dates, lifespan, and age.
 2. **Enrich the report:** `customer_baserep` adds age groups, customer segments, recency, average order value, and average monthly spend.
 3. **Select report fields:** the final SELECT returns the customer attributes and derived metrics.
 
@@ -46,10 +46,16 @@ The report joins `sales-customer` to `sales-fact` on `customer_key`, then groups
 
 The `product_base` CTE joins `dim-product` to `sales-fact` on `product_key`, filters to rows with a non-null order number, and aggregates sales, quantity, distinct orders, customers, and order dates. The final SELECT assigns Low, Mid, or High performance segments and calculates average monthly revenue, average order revenue, and average selling price.
 
+## Data availability
+
+The source CSV files are kept outside this public repository. To request the `sales-fact` and `sales-customer` CSV files for reviewing or reproducing this project, contact **Ayomide Shittu** at [coder6lvck@gmail.com](mailto:coder6lvck@gmail.com?subject=BigQuery%20portfolio%20CSV%20request).
+
+Please use the subject **BigQuery portfolio CSV request** and mention which table files you need and your intended use. Requests are reviewed before any files are shared.
+
 ## Running the project
 
 1. Create or use a BigQuery project and dataset.
-2. Load your own compatible customer, product, and sales tables. This repository contains SQL and documentation; source data files are not included, and the original dataset's provenance has not been documented here.
+2. Request the source CSV files using the contact details above, or load your own compatible customer, product, and sales tables. The product report also requires a compatible `dim-product` table. This repository contains SQL and documentation; source data files are not included.
 3. Replace `sql-sales-data-500710.salespractice` in the SQL with your project and dataset IDs.
 4. Open `customer_report.sql` in the BigQuery SQL editor and run it using GoogleSQL.
 5. To create the customer view, prepend ``CREATE VIEW `YOUR_PROJECT.YOUR_DATASET.customer_report` AS`` to its SELECT statement.
