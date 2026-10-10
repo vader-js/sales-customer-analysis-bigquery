@@ -1,13 +1,31 @@
-# Sales, Customer and Product Analysis with SQL & BigQuery
+# Sales, Customer and Product Analysis with SQL, BigQuery & Power BI
 
-A SQL portfolio project that transforms sales transactions, customer attributes, and product attributes into reusable customer and product reporting views in Google BigQuery.
+A SQL and Power BI portfolio project that transforms sales transactions, customer attributes, and product attributes into reusable customer and product reporting views in Google BigQuery.
+
+## Product Performance dashboard
+
+Built in Power BI Desktop to compare product sales, customer reach, category performance, and last order dates. Category and Product Segment slicers let viewers explore the product portfolio.
+
+![Product Performance dashboard](product-performance.png)
+
+[Download the Power BI report](Sales%20product%20performance.pbix) and open it in Power BI Desktop. GitHub displays the screenshot; use the PBIX file to explore the interactive visuals. Refreshing the report requires access to its configured data source.
+
+### Findings from the displayed report
+
+- The overview displays approximately **29M in total sales** and **130 products**.
+- Bikes account for approximately **28.3M** in sales, compared with **0.7M** for Accessories and **0.3M** for Clothing. These labels are rounded.
+- **Mountain-200 Black-46** leads the displayed product ranking with **1,373,454** in sales.
+- Some Accessories reach more customers than individual Bikes but generate substantially less sales revenue. The chart shows sales and customer reach, not profitability.
+
+The report summarizes the loaded historical data. Last order dates use **dd/mm/yyyy**; the screenshot does not establish a current sales trend.
 
 ## Project objective
 
-Build customer and product reports to explore purchasing behavior, customer segments, age groups, product performance, order activity, and revenue patterns. The report provides a foundation for business reporting and future dashboard development.
+Build customer and product reports to explore purchasing behavior, customer segments, age groups, product performance, order activity, and revenue patterns. The product reporting layer supports a Power BI Product Performance dashboard.
 
 ## Tools and SQL techniques
 
+- Power BI Desktop for product performance visualization
 - Google BigQuery and GoogleSQL
 - Common table expressions (CTEs)
 - LEFT JOIN to combine customer and transaction data
@@ -67,13 +85,12 @@ Required source columns are visible in the SQL. The query expects date-compatibl
 
 The SQL produces customer and product reporting layers with demographic groupings, purchase totals, activity timing, and spending metrics. It demonstrates how to organize analysis into CTEs and convert transaction records into reusable customer-level information.
 
-No numerical business findings or dashboard screenshots are claimed in this repository. A Tableau connection and dashboard have not yet been verified as part of this project.
+The Product Performance dashboard adds category comparisons, product rankings, customer reach analysis, and product-level details. The screenshot and downloadable PBIX are included above.
 
 ## Interpretation and next steps
 
-The customer query logic and supplied product query logic are preserved for transparency. The product script has been formatted; it has not been executed against BigQuery as part of this repository update. See [metric notes](metrics.md) for boundary behavior, date calculations, and null handling before interpreting the output. Possible extensions include explicit handling of inactive customers and unsold products, validation of segmentation thresholds, and dashboards built from the reporting views.
+The customer query logic and supplied product query logic are preserved for transparency. The product script has been formatted; it has not been executed against BigQuery as part of this repository update. See [metric notes](metrics.md) for boundary behavior, date calculations, and null handling before interpreting the output. Possible extensions include explicit handling of inactive customers and unsold products, validation of segmentation thresholds, and additional dashboards built from the reporting views.
 
 ## Author
 
 [Ayomide Shittu](https://github.com/vader-js)
-
