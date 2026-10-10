@@ -8,16 +8,16 @@ Built in Power BI Desktop to compare product sales, customer reach, category per
 
 ![Product Performance dashboard](product-performance.png)
 
-[Download the Power BI report](Sales%20product%20performance.pbix) and open it in Power BI Desktop. GitHub displays the screenshot; use the PBIX file to explore the interactive visuals. Refreshing the report requires access to its configured data source.
+[Download the Power BI report](Sales%20product%20performance.pbix) and open it in Power BI Desktop.
 
-### Findings from the displayed report
+### Key insights
 
 - The overview displays approximately **29M in total sales** and **130 products**.
 - Bikes account for approximately **28.3M** in sales, compared with **0.7M** for Accessories and **0.3M** for Clothing. These labels are rounded.
 - **Mountain-200 Black-46** leads the displayed product ranking with **1,373,454** in sales.
-- Some Accessories reach more customers than individual Bikes but generate substantially less sales revenue. The chart shows sales and customer reach, not profitability.
+- Some Accessories reach more customers than individual Bikes but generate substantially less sales revenue.
 
-The report summarizes the loaded historical data. Last order dates use **dd/mm/yyyy**; the screenshot does not establish a current sales trend.
+Last order dates are formatted as **dd/mm/yyyy**.
 
 ## Project objective
 
